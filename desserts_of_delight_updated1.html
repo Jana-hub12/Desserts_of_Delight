@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Desserts_Of_Delights – Cakes, Brownies & Cookies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --pink-main: #ff4fa5;
+      --pink-soft: #ffe0f3;
+      --pink-bg: #ff66b6;
+      --ring-yellow: #ffe89a;
+      --ring-soft: #ffe4f3;
+      --accent: #ff4fa5;
+      --accent-dark: #d23180;
+      --text: #3b2a2a;
+      --card-bg: #ffffff;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, var(--pink-soft), #ffeefd 35%, #fffdfa 60%, var(--ring-yellow)),
+        radial-gradient(circle at bottom right, #ffd3f0, var(--pink-bg));
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 18px;
+      margin-bottom: 28px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 14px 40px rgba(255, 79, 165, 0.25);
+      position: sticky;
+      top: 10px;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+      background:
+        radial-gradient(circle at center, #fff 40%, var(--ring-soft) 65%, var(--pink-bg));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-text span {
+      font-size: 12px;
+      opacity: 0.75;
+    }
+
+    nav {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    nav a {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      transition: background 0.2s ease, color 0.2s ease;
+      opacity: 0.85;
+    }
+
+    nav a:hover {
+      background: rgba(255, 79, 165, 0.12);
+      color: var(--accent-dark);
+      opacity: 1;
+    }
+
+    .cta-btn {
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), #ffc36a);
+      box-shadow: 0 10px 26px rgba(229, 77, 150, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      text-wrap: nowrap;
+    }
+
+    .cta-btn span {
+      font-size: 16px;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 14px 34px rgba(229, 77, 150, 0.7);
+    }
+
+    .cta-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 7px 16px rgba(229, 77, 150, 0.4);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-copy {
+      padding: 22px 24px;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 160, 205, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255, 181, 222, 0.45), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(255, 234, 186, 0.4), transparent 60%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 79, 165, 0.08);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag span {
+      font-size: 11px;
+      padding: 1px 7px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 123, 170, 0.3);
+    }
+
+    .hero h2 {
+      font-size: clamp(28px, 4vw, 36px);
+      margin: 14px 0 10px;
+      letter-spacing: 0.03em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h2 span {
+      color: var(--accent-dark);
+    }
+
+    .hero p {
+      font-size: 14px;
+      max-width: 32rem;
+      opacity: 0.85;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-quick-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255, 186, 205, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .chip i {
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ghost-btn {
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed rgba(120, 94, 94, 0.4);
+      background: rgba(255, 255, 255, 0.96);
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .ghost-btn:hover {
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .hero-badge {
+      position: absolute;
+      right: 18px;
+      bottom: 16px;
+      padding: 8px 12px;
+      border-radius: 14px;
+      background: rgba(59, 42, 42, 0.94);
+      color: #ffe6f0;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .hero-badge strong {
+      font-size: 13px;
+    }
+
+    .hero-visual {
+      position: relative;
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, #ffe0f7, #ffb4df);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-main-card {
+      border-radius: 26px;
+      background: #fff;
+      padding: 14px;
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.16);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main-card::before {
+      content: "";
+      position: absolute;
+      inset: -40px;
+      background:
+        radial-gradient(circle at top, rgba(255, 169, 211, 0.6), transparent 60%),
+        radial-gradient(circle at bottom, rgba(255, 224, 186, 0.5), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .cake-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #fff, #ffe4f2 40%, #ff9ad1 75%);
+      border: 6px solid rgba(255, 255, 255, 0.95);
+      margin: 0 auto 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    .cake-circle::after {
+      content: "🍰";
+      position: absolute;
+      font-size: 80px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-8deg);
+      text-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-main-card h3 {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .hero-main-card p {
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    .hero-mini-stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .hero-chip {
+      flex: 1;
+      padding: 6px 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      border: 1px solid rgba(255, 206, 235, 0.8);
+    }
+
+    .floating-note {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 6px 10px;
+      background: #fff;
+      border-radius: 999px;
+      font-size: 11px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .floating-note span {
+      font-size: 15px;
+    }
+
+    .floating-card {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 7px 9px;
+      border-radius: 14px;
+      background: rgba(59, 42, 42, 0.93);
+      color: #ffe9f6;
+      font-size: 10px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .floating-card strong {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .section-header h3 {
+      font-size: 18px;
+    }
+
+    .section-header p {
+      font-size: 13px;
+      opacity: 0.8;
+      max-width: 25rem;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .category-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 186, 222, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-pill {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(255, 79, 165, 0.06);
+      color: var(--accent-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+    }
+
+    .category-emoji {
+      font-size: 20px;
+      padding: 4px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .category-header h4 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .category-header span {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .category-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      margin-top: 4px;
+      color: rgba(59, 42, 42, 0.8);
+    }
+
+    .mini-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+      display: inline-block;
+      margin-inline: 3px;
+    }
+
+    .category-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .category-footer strong {
+      font-size: 13px;
+    }
+
+    .link-btn {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(59, 42, 42, 0.38);
+      background: rgba(255, 255, 255, 0.96);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .link-btn:hover {
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+    }
+
+    .menu-item {
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 206, 235, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-thumb {
+      height: 110px;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 20% 0, #fff, #ffe9f4 40%, #ffabd8 75%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin-bottom: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.22), transparent 50%),
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.7), transparent 60%);
+      mix-blend-mode: soft-light;
+    }
+
+    .menu-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .menu-title-row h4 {
+      font-size: 14px;
+    }
+
+    .menu-title-row span {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    .price-tag {
+      font-weight: 700;
+      color: var(--accent-dark);
+      font-size: 13px;
+    }
+
+    .menu-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      opacity: 0.85;
+    }
+
+    .tag {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(59, 42, 42, 0.06);
+    }
+
+    .about-contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .about-card,
+    .contact-card {
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 186, 222, 0.85);
+    }
+
+    .about-card h3,
+    .contact-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .about-card p {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    .about-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .about-highlights span {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(255, 79, 165, 0.06);
+      border: 1px solid rgba(255, 186, 222, 0.85);
+    }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .contact-row strong {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.6;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .contact-pill {
+      font-size: 12px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(59, 42, 42, 0.32);
+      background: rgba(255, 255, 255, 0.96);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .contact-pill:hover {
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 11px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-wrap: wrap;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .about-contact {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 14px;
+      }
+
+      header {
+        padding-inline: 14px;
+      }
+
+      .hero-copy,
+      .hero-visual,
+      .about-card,
+      .contact-card {
+        padding: 14px;
+      }
+
+      .category-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-badge {
+        position: static;
+        margin-top: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">
+          <!-- Put logo.png in same folder as this file -->
+          <img src="logo.png" alt="Desserts_Of_Delights logo" />
+        </div>
+        <div class="brand-text">
+          <h1>Desserts_Of_Delights</h1>
+          <span>Cakes · Brownies · Cookies</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#categories">Specialties</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <button class="cta-btn" onclick="scrollToContact()">
+          Order now
+          <span>➜</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section id="hero" class="hero">
+        <div class="hero-copy">
+          <div class="hero-tag">
+            Since 2023
+            <span>Desserts_Of_Delights</span>
+          </div>
+          <h2>
+            Cute & colourful <span>homemade desserts</span> for every celebration.
+          </h2>
+          <p>
+            At Desserts_Of_Delights in Chennai, every cake, brownie and cookie is baked fresh to order,
+            inspired by your favourite colours and party themes – just like our sweet mascot chef.
+          </p>
+          <div class="hero-quick-facts">
+            <div class="chip"><i>⭐</i> Home‑baked with love</div>
+            <div class="chip"><i>🎨</i> Custom designs & themes</div>
+            <div class="chip"><i>🎁</i> Gift boxes for every occasion</div>
+          </div>
+          <div class="hero-actions">
+            <button class="cta-btn" onclick="scrollToContact()">
+              Message on Instagram
+              <span>📷</span>
+            </button>
+            <button class="ghost-btn" onclick="document.getElementById('menu').scrollIntoView({ behavior: 'smooth' })">
+              View full menu
+              <span>↓</span>
+            </button>
+          </div>
+          <div class="hero-badge">
+            <span>🍰</span>
+            <div>
+              <strong>Fresh & adorable</strong><br />
+              Cute designs · Great taste
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="floating-note">
+            <span>👩‍🍳</span> Chef‑designed treats
+          </div>
+          <div class="hero-main-card">
+            <div class="cake-circle"></div>
+            <h3>Signature Pastel Cake</h3>
+            <p>Soft sponge, pastel buttercream and cute decorations to match your party theme.</p>
+            <div class="hero-mini-stats">
+              <div class="hero-chip">
+                <span>🎂</span> 0.5–3 kg
+              </div>
+              <div class="hero-chip">
+                <span>🕒</span> Order 24h ahead
+              </div>
+            </div>
+          </div>
+          <div class="floating-card">
+            <strong>Desserts box</strong>
+            Mix of cakesicles, brownies & cookies for gifting
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section id="categories">
+        <div class="section-header">
+          <div>
+            <h3>What would you like today?</h3>
+            <p>
+              From cute birthday cakes to fudgy brownies and chunky cookies,
+              Chennai customers can pick favourites or create a custom combo box for any occasion.
+            </p>
+          </div>
+        </div>
+
+        <div class="category-grid">
+          <!-- Cakes -->
+          <article class="category-card">
+            <div class="category-pill">
+              <span class="mini-dot"></span>
+              Cakes
+            </div>
+            <div class="category-header">
+              <div>
+                <h4>Custom themed cakes</h4>
+                <span>Perfect for birthdays, anniversaries & kids’ parties.</span>
+              </div>
+              <div class="category-emoji">🎂</div>
+            </div>
+            <div class="category-meta">
+              <span>Buttercream · Fresh cream · Cartoon themes</span>
+              <span>From ₹899 / 1kg</span>
+            </div>
+            <div class="category-footer">
+              <div>Pastel, chocolate, red velvet & more</div>
+              <button class="link-btn" onclick="document.getElementById('menu').scrollIntoView({ behavior: 'smooth' })">
+                View cake menu →
+              </button>
+            </div>
+          </article>
+
+          <!-- Brownies -->
+          <article class="category-card">
+            <div class="category-pill">
+              <span class="mini-dot"></span>
+              Brownies
+            </div>
+            <div class="category-header">
+              <div>
+                <h4>Fudgy brownies</h4>
+                <span>Rich chocolate brownies with crackly tops.</span>
+              </div>
+              <div class="category-emoji">🍫</div>
+            </div>
+            <div class="category-meta">
+              <span>Box of 4 / 8 / 12 pieces</span>
+              <span>From ₹260 / box</span>
+            </div>
+            <div class="category-footer">
+              <div>Classic, Nutella swirl, walnut & more</div>
+              <button class="link-btn" onclick="document.getElementById('menu').scrollIntoView({ behavior: 'smooth' })">
+                View brownie menu →
+              </button>
+            </div>
+          </article>
+
+          <!-- Cookies -->
+          <article class="category-card">
+            <div class="category-pill">
+              <span class="mini-dot"></span>
+              Cookies
+            </div>
+            <div class="category-header">
+              <div>
+                <h4>Chunky cookies</h4>
+                <span>Crispy edges, soft centre and big chocolate chunks.</span>
+              </div>
+              <div class="category-emoji">🍪</div>
+            </div>
+            <div class="category-meta">
+              <span>Box of 6 / 12</span>
+              <span>From ₹220 / box</span>
+            </div>
+            <div class="category-footer">
+              <div>Choco‑chip, confetti, double chocolate</div>
+              <button class="link-btn" onclick="document.getElementById('menu').scrollIntoView({ behavior: 'smooth' })">
+                View cookie menu →
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Menu -->
+      <section id="menu">
+        <div class="section-header">
+          <div>
+            <h3>Popular treats</h3>
+            <p>
+              A small sample of our Desserts_Of_Delights menu for Chennai. Flavours, colours and
+              designs can be customised to match your theme.
+            </p>
+          </div>
+        </div>
+
+        <div class="menu-grid">
+          <!-- Cake items -->
+          <article class="menu-item">
+            <div class="menu-thumb">🎂</div>
+            <div class="menu-title-row">
+              <div>
+                <h4>Pastel Sprinkle Cake</h4>
+                <span>Vanilla sponge · pastel buttercream · sprinkles</span>
+              </div>
+              <div class="price-tag">From ₹899</div>
+            </div>
+            <div class="menu-meta">
+              <span class="tag">1kg · 1.5kg · 2kg</span>
+              <span>24–48h pre‑order</span>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-thumb">🦄</div>
+            <div class="menu-title-row">
+              <div>
+                <h4>Unicorn Theme Cake</h4>
+                <span>Pastel colours, gold horn & cute details</span>
+              </div>
+              <div class="price-tag">From ₹1,299</div>
+            </div>
+            <div class="menu-meta">
+              <span class="tag">Perfect for kids</span>
+              <span>Custom colours available</span>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-thumb">🍫</div>
+            <div class="menu-title-row">
+              <div>
+                <h4>Chocolate Overload Cake</h4>
+                <span>Chocolate sponge · ganache · choco chips</span>
+              </div>
+              <div class="price-tag">From ₹1,099</div>
+            </div>
+            <div class="menu-meta">
+              <span class="tag">Eggless on request</span>
+              <span>For chocoholics</span>
+            </div>
+          </article>
+
+          <!-- Brownies -->
+          <article class="menu-item">
+            <div class="menu-thumb">🧁</div>
+            <div class="menu-title-row">
+              <div>
+                <h4>Classic Brownies</h4>
+                <span>Dark chocolate · gooey centre</span>
+              </div>
+              <div class="price-tag">From ₹260</div>
+            </div>
+            <div class="menu-meta">
+              <span class="tag">Box of 4 / 8 / 12</span>
+              <span>Keep refrigerated</span>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-thumb">🌰</div>
+            <div class="menu-title-row">
+              <div>
+                <h4>Walnut Brownies</h4>
+                <span>Loaded with toasted walnuts</span>
+              </div>
+              <div class="price-tag">From ₹290</div>
+            </div>
+            <div class="menu-meta">
+              <span class="tag">Contains nuts</span>
+              <span>Gift box option</span>
+            </div>
+          </article>
+
+          <!-- Cookies -->
+          <article class="menu-item">
+            <div class="menu-thumb">🍪</div>
+            <div class="menu-title-row">
+              <div>
+                <h4>Choco‑Chip Cookies</h4>
+                <span>Chunky, soft‑centre cookies</span>
+              </div>
+              <div class="price-tag">From ₹220</div>
+            </div>
+            <div class="menu-meta">
+              <span class="tag">Box of 6 / 12</span>
+              <span>Best warm</span>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-thumb">🌈</div>
+            <div class="menu-title-row">
+              <div>
+                <h4>Rainbow Confetti Cookies</h4>
+                <span>Colourful sprinkles & vanilla dough</span>
+              </div>
+              <div class="price-tag">From ₹240</div>
+            </div>
+            <div class="menu-meta">
+              <span class="tag">Kids’ favourite</span>
+              <span>Eggless available</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- About & contact -->
+      <section id="about">
+        <div class="about-contact">
+          <article class="about-card">
+            <h3>About Desserts_Of_Delights</h3>
+            <p>
+              Desserts_Of_Delights is a Chennai‑based home bakery started in 2023 with one goal:
+              to make every celebration sweeter and cuter. From pastel‑coloured cakes
+              to fudgy brownies and chunky cookies, everything is baked fresh in small batches.
+            </p>
+            <div class="about-highlights">
+              <span>✓ Custom themes & colours</span>
+              <span>✓ Eggless options available</span>
+              <span>✓ Made fresh for every order</span>
+              <span>✓ Perfect for birthdays & gifting</span>
+            </div>
+            <p>
+              Share your theme, colours and quantity, and we’ll suggest ideas tailored
+              specially for you.
+            </p>
+          </article>
+
+          <article class="contact-card" id="contact">
+            <h3>Place an order</h3>
+            <div class="contact-row">
+              <strong>Contact us</strong>
+              <div class="contact-links">
+                <a href="https://www.instagram.com/desserts_of_delight/" target="_blank" class="contact-pill">
+                  📷 Message us on Instagram
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <strong>How to order</strong>
+              <ul style="margin: 4px 0 0; padding-left: 18px; font-size: 13px; opacity: 0.85;">
+                <li>Click the Instagram button above.</li>
+                <li>Send us a DM with your occasion (birthday, anniversary, etc.) in Chennai.</li>
+                <li>Tell us what you want (cake / brownies / cookies) and the delivery date & time.</li>
+                <li>Share any theme, colour ideas or reference pictures.</li>
+                <li>We’ll reply with design options, prices and confirmation.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Desserts_Of_Delights. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function scrollToContact() {
+      const el = document.getElementById("contact");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
